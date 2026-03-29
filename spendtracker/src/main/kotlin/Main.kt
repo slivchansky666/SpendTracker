@@ -10,7 +10,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 fun main() {
     val bot = bot {
-        token = "8630414921:AAE4HDnXC8AKpe-JabDyVfipKChp1n0jPDw"
+        token = "YOUR_BOT_TOKEN"
         dispatch {
 
             command("start") {
@@ -52,7 +52,7 @@ fun main() {
     }
     bot.startPolling()
 }
-val url = URL("https://script.google.com/macros/s/AKfycbyOouu5Q270GNQDKeZPD5zotK8zVnFpRfZSZCYQ8jUXFjMjacYIJfWljAmB5WARHl51/exec")
+val url = URL("YOUR_URL_FOR_DB")
 fun sendToTable(amount: String, category: String) {
 
     val json = """{"amount": "$amount", "category": "$category"}"""
