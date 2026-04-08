@@ -35,7 +35,7 @@ fun main() {
             command("list") {
                 Thread {
                     try {
-                        val content = url.readText() // Самый быстрый способ прочитать GET в Kotlin
+                        val content = url.readText() 
                         val prettyReport = formatReport(content)
 
                         bot.sendMessage(
@@ -62,12 +62,10 @@ fun sendToTable(amount: String, category: String) {
         doOutput = true
         setRequestProperty("Content-Type", "application/json")
 
-        // Отправляем данные
         outputStream.use { os ->
             os.write(json.toByteArray())
         }
 
-        // Читаем ответ (обязательно, чтобы запрос завершился)
         val responseCode = responseCode
         if (responseCode == HttpURLConnection.HTTP_OK || responseCode == 302) {
             println("Успешно! Код: $responseCode")
@@ -83,7 +81,7 @@ fun formatReport(rawJson: String): String {
         .replace("[[", "")
         .replace("]]", "")
         .replace("\"", "")
-        .split("],[") // Разделяем на строки
+        .split("],[") 
 
     val builder = StringBuilder()
     builder.append("<b>📊 Твои расходы:</b>\n\n")
@@ -94,7 +92,6 @@ fun formatReport(rawJson: String): String {
     for (row in clean) {
         val columns = row.split(",")
         if (columns.size >= 3) {
-            // Берем только время из даты (например, 10:02)
             val time = columns[0].substringAfter("T").substringBefore(".")
             val amount = columns[1]
             val item = columns[2]
